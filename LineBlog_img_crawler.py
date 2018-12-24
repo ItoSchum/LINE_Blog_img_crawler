@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-from urllib.request import urlopen as uReq
-from urllib.request import urlretrieve as uRetr
+from urllib import request
 from bs4 import BeautifulSoup as soup
 import os
 
@@ -9,9 +8,12 @@ raw_url = input("Please input the url:\n(e.g. https://lineblog.me/uesaka_sumire/
 # raw_url = "https://lineblog.me/uesaka_sumire/archives/2018-11.html?p=1"
 folder_dirname = input("Please input the path:\n(e.g. ~/[YOUR_DIRNAME])\n\n")
 
+headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.168 Safari/537.36'
+}
+
 def find_target_urls(raw_url):
-	
-	uClient = uReq(raw_url)
+	req = request.Request(raw_url, headers = headers)
+	uClient = request.urlopen(req)
 	page_html = uClient.read()
 	uClient.close()
 
@@ -45,7 +47,8 @@ def downloadImg(imgURLs_article, article_name):
 		folder_path = os.path.join(os.path.expanduser(folder_dirname), folder_basename)
 		mkdir(folder_path) 
 
-		uRetr(imgURL, folder_path + "/%03d.jpg" %imgID)
+		req = request.Request(raw_url, headers = headers)
+		request.urlretrieve(imgURL, folder_path + "/%03d.jpg" %imgID)
 		print(imgURL)
 		imgID = imgID + 1
 
@@ -53,7 +56,8 @@ def downloadImg(imgURLs_article, article_name):
 def parse_and_download(target_url):
 
 	# opening up connection, grabbing the page
-	uClient = uReq(target_url)
+	req = request.Request(target_url, headers = headers)
+	uClient = request.urlopen(req)
 	page_html = uClient.read()
 	uClient.close()
 
@@ -74,6 +78,6 @@ target_urls = find_target_urls(raw_url)
 
 parse_and_download(raw_url)
 for target_url in target_urls:
-	parse_and_download(target_url.get('href'))
+	parse_and_download(target_url.get('href', headers = headers))
 	
 
