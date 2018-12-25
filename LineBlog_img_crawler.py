@@ -4,10 +4,10 @@ from urllib.request import urlretrieve as uRetr
 from bs4 import BeautifulSoup as soup
 import os
 
-raw_url = input("Please input the url:\n(e.g. https://lineblog.me/uesaka_sumire/archives/2018-11.html)\n\n")
+raw_url = input("Please input the url: (e.g. https://lineblog.me/uesaka_sumire/archives/2018-11.html)\n")
 # e.g.
 # raw_url = "https://lineblog.me/uesaka_sumire/archives/2018-11.html?p=1"
-folder_dirname = input("Please input the path:\n(e.g. ~/[YOUR_DIRNAME])\n\n")
+folder_dirname = input("Please input the path: (e.g. ~/[YOUR_DIRNAME])\n")
 
 def find_target_urls(raw_url):
 	
