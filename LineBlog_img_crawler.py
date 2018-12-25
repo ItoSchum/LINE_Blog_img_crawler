@@ -90,7 +90,6 @@ def parse_and_download(target_url):
 	req = request.Request(target_url, headers = requests_headers())
 	uClient = request.urlopen(req)
 	page_html = uClient.read()
-	uClient.close()
 
 	# html parsing
 	page_soup = soup(page_html, "html.parser")
@@ -104,6 +103,7 @@ def parse_and_download(target_url):
 		imgURLs_article = article.find("div", {"class":"article-body-inner"}).find_all("a", {"target":"_blank"})
 		downloadImg(imgURLs_article, article_name)
 
+	uClient.close()
 
 target_urls = find_target_urls(raw_url)
 
