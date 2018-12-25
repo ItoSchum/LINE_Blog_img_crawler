@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-from urllib import request
+from urllib import request 
 from bs4 import BeautifulSoup as soup
 import os
 import random
+
 
 raw_url = input("\nPlease input the url: (e.g. https://lineblog.me/uesaka_sumire/archives/2018-11.html)\n")
 # e.g.
@@ -42,8 +43,8 @@ def requests_headers():
     print('headers.py connection Success!')
     return header
 
-def find_target_urls(raw_url):
-	req = request.Request(raw_url, headers = requests_headers())
+def find_target_urls(target_url):
+	req = request.Request(url = target_url, headers = requests_headers())
 	uClient = request.urlopen(req)
 	page_html = uClient.read()
 	uClient.close()
@@ -87,9 +88,10 @@ def downloadImg(imgURLs_article, article_name):
 def parse_and_download(target_url):
 
 	# opening up connection, grabbing the page
-	req = request.Request(target_url, headers = requests_headers())
+	req = request.Request(url = target_url, headers = requests_headers())
 	uClient = request.urlopen(req)
 	page_html = uClient.read()
+	uClient.close()
 
 	# html parsing
 	page_soup = soup(page_html, "html.parser")
@@ -102,8 +104,6 @@ def parse_and_download(target_url):
 		article_name = title_article.text
 		imgURLs_article = article.find("div", {"class":"article-body-inner"}).find_all("a", {"target":"_blank"})
 		downloadImg(imgURLs_article, article_name)
-
-	uClient.close()
 
 target_urls = find_target_urls(raw_url)
 
