@@ -4,20 +4,29 @@ from urllib.request import urlretrieve as uRetr
 from bs4 import BeautifulSoup as soup
 import os
 
-raw_url = input("\nPlease input the url: (e.g. https://lineblog.me/uesaka_sumire/archives/2018-11.html)\n")
-# e.g.
-# raw_url = "https://lineblog.me/uesaka_sumire/archives/2018-11.html?p=1"
-folder_dirname = input("\nPlease input the path: (e.g. ~/[YOUR_DIRNAME])\n")
+raw_url = input("\nPlease Input the URL: (e.g. https://lineblog.me/uesaka_sumire/archives/2018-11.html)\nURL: ")
 
-def find_target_urls(raw_url):
-	
-	uClient = uReq(raw_url)
+folder_dirname = input("\nPlease Input the Saving Path: (e.g. ~/[YOUR_DIRNAME])\nPath: ")
+
+crawler_mode = input("\nPlease Choose Mode:\n 0 --- Current Page Lateset Article Only\n 1 --- Current Page Whole\n 2 --- Current Month Whole\n 3 --- Current Page with Specific Position\nMode: ")
+
+
+def open_url_to_soup(url):
+
+	# opening up connection, grabbing the page
+	uClient = uReq(url)
 	page_html = uClient.read()
 	uClient.close()
 
 	# html parsing
 	page_soup = soup(page_html, "html.parser")
 
+	return page_soup
+
+
+def find_target_urls(raw_url):
+	
+	page_soup = open_url_to_soup(raw_url)
 	paging_number = page_soup.find("ol", {"class":"paging-number"})
 	target_urls = paging_number.find_all("a")
 
@@ -50,30 +59,48 @@ def downloadImg(imgURLs_article, article_name):
 		imgID = imgID + 1
 
 
-def parse_and_download(target_url):
+def mono_article_parse(article):
+	
+	title_article = article.find("header", {"class":"article-header"})
+	article_name = title_article.text
+	imgURLs_article = article.find("div", {"class":"article-body-inner"}).find_all("a", {"target":"_blank"})
+	downloadImg(imgURLs_article, article_name)
 
-	# opening up connection, grabbing the page
-	uClient = uReq(target_url)
-	page_html = uClient.read()
 
-	# html parsing
-	page_soup = soup(page_html, "html.parser")
+def whole_parse_and_download(target_url):
 
+	page_soup = open_url_to_soup(target_url)
 	# grabs each element
-	articles = page_soup.findAll("article", {"class":"article"})
+	articles = page_soup.find_all("article", {"class":"article"})
 
 	for article in articles:
-		title_article = article.find("header", {"class":"article-header"})
-		article_name = title_article.text
-		imgURLs_article = article.find("div", {"class":"article-body-inner"}).find_all("a", {"target":"_blank"})
-		downloadImg(imgURLs_article, article_name)
+		mono_article_parse(article)
+		
 
-	uClient.close()
+def specific_parse_and_download(target_url, article_position = 0):
+
+	page_soup = open_url_to_soup(target_url)
+	# grabs each element
+	articles = page_soup.find_all("article", {"class":"article"})
 	
-target_urls = find_target_urls(raw_url)
+	mono_article_parse(articles[article_position])
 
-parse_and_download(raw_url)
-for target_url in target_urls:
-	parse_and_download(target_url.get('href'))
+
+
+if crawler_mode == '0':
+	specific_parse_and_download(raw_url)
+
+elif crawler_mode == '1':
+	whole_parse_and_download(raw_url)
+
+elif crawler_mode == '2':
+	target_urls = find_target_urls(raw_url)
+	for target_url in target_urls:
+		whole_parse_and_download(target_url.get('href'))
+
+elif crawler_mode == '3':
+	article_position = input("\nPlease Choose the Article Position (Start with 1): ")
+	specific_parse_and_download(raw_url, int(article_position) - 1)
+
 	
 
