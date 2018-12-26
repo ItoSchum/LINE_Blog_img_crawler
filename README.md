@@ -40,20 +40,26 @@ Crawling LINE Blog Archive's images<br>
 		```
 
 ## Usage
-1. `Please Input the URL:`<br> 
+1. When `Please Input the URL:` displayed<br> 
 	- Please input the web address from which you want to catch images.
 		- e.g. https://lineblog.me/uesaka_sumire/archives/2018-12.html
 	- **Attention:** The web address must be an **LINE Blog Archive**, which means the URL will definitely look like: `https://lineblog.me/[PERSON_NAME]/archive/[YEAR]-[MONTH].html`
 
-2. `Please Input the Saving Path:`<br>
+2. When `Please Input the Saving Path:` displayed<br>
 	- Please input the path where you want to save the images in the format.
 		- e.g. `~/[YOUR_DIRNAME]`
 
-3. Please Choose Mode:<br>
-	1. Input `0`: Current Page Lateset Article Only
-	2. Input `1`: Current Page Whole
-	3. Input `2`: Current Month Whole
-	4. Input `3`: Current Page with Specific Position
+3. When `Please Choose Mode:` displayed<br>
+	- Input `0`: Current Page Lateset Article Only
+		- It will download the first article's images on the current blog page referring to _the URL given_. 
+	- Input `1`: Current Page Whole
+		- It will download all the article images on the current blog page referring to _the URL given_. 
+	- Input `2`: Current Month Whole
+		- It will download all the article images within the month which the blog page is in referring to _the URL given_.
+	- Input `3`: Current Page with Specific Position
+		- It will download the specific article's images on the current blog page referring to _the URL given_ and _your next input_. 
 
 ## Demo
 ![demo.jpg](media/demo.jpg)
+
+
