@@ -48,6 +48,8 @@ Crawling LINE Blog Archive's images<br>
 2. When `Please Input the Saving Path:` displayed<br>
 	- Please input the path where you want to save the images in the format.
 		- e.g. `~/[YOUR_DIRNAME]`
+	- If the `path` doesn't exist, it will be made up automatically, or it will just use the exist one.
+	- If you choose a `path` where there has already been some earlier image downloads by this script or not, the images will still be downloaded and replaced (if they share the same name).
 
 3. When `Please Choose Mode:` displayed<br>
 	- Input `0`: Current Page Lateset Article Only
@@ -58,6 +60,7 @@ Crawling LINE Blog Archive's images<br>
 		- It will download all the article images within the month which the blog page is in referring to _the URL given_.
 	- Input `3`: Current Page with Specific Position
 		- It will download the specific article's images on the current blog page referring to _the URL given_ and _your next input_. 
+
 
 ## Demo
 ![demo.jpg](media/demo.jpg)
