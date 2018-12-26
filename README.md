@@ -1,12 +1,12 @@
 # LINE Blog Image Crawler
+> **Initial Purpose:** Crawling Uesaka Sumire (上坂すみれ) 's LINE Blog images
 
 ## Feature
-Crawling LINE Blog Archive's images<br>
-**Initial Purpose:** Crawling Uesaka Sumire (上坂すみれ) 's LINE Blog images
+- Crawling LINE Blog Archive images **(Archive Image ONLY)**
 
 ## Requirement
 - Python3
-- bs4 (aka BeautifulSoup 4.x)
+- bs4 (aka *BeautifulSoup 4.x*)
 
 ### How to Install
 #### Python3
@@ -14,27 +14,28 @@ Crawling LINE Blog Archive's images<br>
 	- Native built-in, no need for downloading
 	- Or use `brew install python3` to install the non-native Python3
 - Windows: 
-	- Checkout here <https://www.python.org/downloads/windows/>
+	- Download Python3 manually from <https://www.python.org/downloads/windows/>
 - Linux:
 	- Use the package manager
 		- e.g. 
 			- Debian: `apt install python3`
 			- SUSE: `zypper install python3`
 
-#### bs4 (aka BeautifulSoup 4.x)
+#### bs4 (aka *BeautifulSoup 4.x*)
 - macOS:
-	- `pip3 install bs4` 
+	- Run the command `pip3 install bs4` in Teriminal (Terminal.app, iTerm.app and etc.)
 - Windows: 
 	- Generally, it's included in Python3's installing package 
-	- Or, checkout here <https://pypi.org/project/pip/>
+	- Or download `pip` manually from <https://pypi.org/project/pip/>
 - Linux: 
 	
 	- Use the package manager: `sudo apt install python3-pip`
-	- Or
+	- Or run the commands below
 	
 		```
 		curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 		// Download the installing script
+		
 		sudo python3 get-pip.py
 		// Run the installing script
 		```
