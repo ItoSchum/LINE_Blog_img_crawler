@@ -41,8 +41,9 @@ Crawling LINE Blog Archive's images<br>
 
 ## Usage
 1. `Please Input the URL:`<br> 
-	- Please input the web address whaere you want to catch images.
+	- Please input the web address from which you want to catch images.
 		- e.g. https://lineblog.me/uesaka_sumire/archives/2018-12.html
+	- Attention: The web address must be an **LINE Blog Archive**, which means the URL will definitely look like https://lineblog.me/[PERSON_NAME]/archive/[YEAR]-[MONTH].html
 
 2. `Please Input the Saving Path:`<br>
 	- Please input the path where you want to save the images in the format.
