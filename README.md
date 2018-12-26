@@ -30,13 +30,13 @@ Crawling LINE Blog Archive's images<br>
 - Linux: 
 	
 	- Use the package manager: `sudo apt install python3-pip`
-	- Or	
+	- Or
 	
 		```
-	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-	// Download the installing script
-	sudo python3 get-pip.py
-	// Run the installing script
+		curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+		// Download the installing script
+		sudo python3 get-pip.py
+		// Run the installing script
 		```
 
 ## Usage
