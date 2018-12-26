@@ -6,8 +6,38 @@ Crawling LINE Blog Archive's images<br>
 
 ## Requirement
 - Python3
-- bs4
-- bash
+- bs4 (aka BeautifulSoup 4.x)
+
+### How to Install
+#### Python3
+- macOS: 
+	- Native built-in, no need for downloading
+	- Or use `brew install python3` to install the non-native Python3
+- Windows: 
+	- Checkout here <https://www.python.org/downloads/windows/>
+- Linux:
+	- Use the package manager
+		- e.g. 
+			- Debian: `apt install python3`
+			- SUSE: `zypper install python3`
+
+#### bs4 (aka BeautifulSoup 4.x)
+- macOS:
+	- `pip3 install bs4` 
+- Windows: 
+	- Generally, it's included in Python3's installing package 
+	- Or, checkout here <https://pypi.org/project/pip/>
+- Linux: 
+	
+	- Use the package manager: `sudo apt install python3-pip`
+	- Or	
+	
+		```
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+	// Download the installing script
+	sudo python3 get-pip.py
+	// Run the installing script
+		```
 
 ## Usage
 1. `Please Input the URL:`<br> 
