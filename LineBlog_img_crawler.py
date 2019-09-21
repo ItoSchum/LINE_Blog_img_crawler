@@ -51,6 +51,7 @@ def downloadImg(imgURLs_article, article_name):
 		
 		folder_basename = article_name.split("\n")[2] + " " + article_name.split("\n")[1]
 		folder_basename = folder_basename.replace('/', '-')
+		folder_basename = folder_basename.replace(':', '-')
 		folder_path = os.path.join(os.path.expanduser(folder_dirname), folder_basename)
 		mkdir(folder_path) 
 
