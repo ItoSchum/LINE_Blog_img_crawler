@@ -41,7 +41,7 @@ def find_target_urls(raw_url):
     
     if last_page_num != None:
         base_url = last_page_url.split("?p=")[0] + "?p="
-        for i in range(2, int(last_page_num) + 1):
+        for i in range(1, int(last_page_num) + 1):
             concat_url = base_url + str(i)
             target_urls.append(concat_url)
 #             print("Concat URL:", concat_url)
@@ -120,7 +120,7 @@ elif crawler_mode == '1':
 	whole_parse_and_download(raw_url)
 
 elif crawler_mode == '2':
-	whole_parse_and_download(raw_url)
+	# whole_parse_and_download(raw_url)
 	target_urls = find_target_urls(raw_url)
 	for target_url in target_urls:
 		whole_parse_and_download(target_url)
