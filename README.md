@@ -55,17 +55,17 @@
 	- If you choose a `path` where there has already been some earlier image downloads by this script or not, the images will still be downloaded and replaced (if they share the same name).
 
 4. When `Please Choose Mode:` displayed<br>
-	- Input `0`: Current Page Lateset Article Only
+	- Input `0`: Current Page's Lateset Article Only
 		- It will download the first article's images on the current blog page referring to _the URL given_. 
-	- Input `1`: Current Page Whole
+	- Input `1`: Current Page Only
 		- It will download all the article images on the current blog page referring to _the URL given_. 
-	- Input `2`: Current Month Whole
-		- It will download all the article images within the month which the blog page is in referring to _the URL given_.
+	- Input `2`: All Related Pages
+		- It will download all the article images on the related pages which referred to the navigation bar of _the URL given_.
 	- Input `3`: Current Page with Specific Position
 		- It will download the specific article's images on the current blog page referring to _the URL given_ and _your next input_. 
 
 
 ## Demo
-![demo.jpg](media/demo.jpg)
+![demo.png](media/demo.png)
 
 

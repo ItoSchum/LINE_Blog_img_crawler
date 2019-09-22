@@ -8,7 +8,7 @@ raw_url = input("\nPlease Input the URL: (e.g. https://lineblog.me/uesaka_sumire
 
 folder_dirname = input("\nPlease Input the Saving Path: (e.g. ~/[YOUR_DIRNAME])\nPath: ")
 
-crawler_mode = input("\nPlease Choose Mode:\n 0 --- Current Page Lateset Article Only\n 1 --- Current Page Whole\n 2 --- Current Month Whole\n 3 --- Current Page with Specific Position\nMode: ")
+crawler_mode = input("\nPlease Choose Mode:\n 0 --- Current Page's Lateset Article ONLY\n 1 --- Current Page ONLY\n 2 --- ALL Related Pages\n 3 --- Current Page at Specific Position\nMode: ")
 
 
 def open_url_to_soup(url):
@@ -25,12 +25,37 @@ def open_url_to_soup(url):
 
 
 def find_target_urls(raw_url):
-	
-	page_soup = open_url_to_soup(raw_url)
-	paging_number = page_soup.find("ol", {"class":"paging-number"})
-	target_urls = paging_number.find_all("a")
-
-	return target_urls
+    
+    page_soup = open_url_to_soup(raw_url)
+    
+    target_urls = []
+    last_page_url = []
+    last_page_num = None
+    paging_last = page_soup.find("li", {"class":"paging-last"})
+    if paging_last != None:
+        for page in paging_last:
+            last_page_url = page.get("href")
+            last_page_num = page.string
+#             print("Last URL:", last_page_url)
+#             print("Last Page Num:", last_page_num)
+    
+    if last_page_num != None:
+        base_url = last_page_url.split("?p=")[0] + "?p="
+        for i in range(2, int(last_page_num) + 1):
+            concat_url = base_url + str(i)
+            target_urls.append(concat_url)
+#             print("Concat URL:", concat_url)
+    else:  
+        paging_number = page_soup.find("ol", {"class":"paging-number"})
+        target_pages = paging_number.find_all("a")
+        target_page_num = 1
+    
+        for target_page in target_pages:
+            target_urls.append(target_page.get("href"))
+            if target_page_num < int(target_page.string):
+                target_page_num = int(target_page.string)
+        
+    return target_urls
 
 
 def mkdir(path):
@@ -98,7 +123,7 @@ elif crawler_mode == '2':
 	whole_parse_and_download(raw_url)
 	target_urls = find_target_urls(raw_url)
 	for target_url in target_urls:
-		whole_parse_and_download(target_url.get('href'))
+		whole_parse_and_download(target_url)
 
 elif crawler_mode == '3':
 	article_position = input("\nPlease Choose the Article Position (Start with 1): ")
