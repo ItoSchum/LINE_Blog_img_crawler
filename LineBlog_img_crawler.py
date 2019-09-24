@@ -8,6 +8,8 @@ raw_url = input("\nPlease Input the URL: (e.g. https://lineblog.me/uesaka_sumire
 
 folder_dirname = input("\nPlease Input the Saving Path: (e.g. ~/[YOUR_DIRNAME])\nPath: ")
 
+dirname_without_title = input("\nWould yout like to have directory names without artile title? (Y/N) ")
+
 crawler_mode = input("\nPlease Choose Mode:\n 0 --- Current Page's Lateset Article ONLY\n 1 --- Current Page ONLY\n 2 --- ALL Related Pages\n 3 --- Current Page at Specific Position\nMode: ")
 
 
@@ -74,9 +76,14 @@ def downloadImg(imgURLs_article, article_name):
 	for imgURL_article in imgURLs_article:
 		imgURL = imgURL_article.get('href')
 		
-		folder_basename = article_name.split("\n")[2] + " " + article_name.split("\n")[1]
+		if dirname_without_title == 'N' or dirname_without_title == 'n':
+			folder_basename = article_name.split("\n")[2] + " " + article_name.split("\n")[1]
+		else:
+			folder_basename = article_name.split("\n")[2]
+		
 		folder_basename = folder_basename.replace('/', '-')
 		folder_basename = folder_basename.replace(':', '-')
+
 		folder_path = os.path.join(os.path.expanduser(folder_dirname), folder_basename)
 		mkdir(folder_path) 
 

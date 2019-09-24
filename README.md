@@ -54,7 +54,10 @@
 	- If the `path` doesn't exist, it will be made up automatically, or it will just use the exist one.
 	- If you choose a `path` where there has already been some earlier image downloads by this script or not, the images will still be downloaded and replaced (if they share the same name).
 
-4. When `Please Choose Mode:` displayed<br>
+4. When `Would yout like to have directory names without artile title? (Y/N)` displayed<br>
+	- Please input `Y` or `N` depended on whether you want to have directory created without the article title.
+
+5. When `Please Choose Mode:` displayed<br>
 	- Input `0`: Current Page's Lateset Article Only
 		- It will download the first article's images on the current blog page referring to _the URL given_. 
 	- Input `1`: Current Page Only
